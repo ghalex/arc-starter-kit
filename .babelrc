@@ -1,0 +1,27 @@
+{
+  "presets": [
+    "react",
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [ "last 2 versions" ]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [ "transform-decorators-legacy" ],
+    [ "transform-object-rest-spread" ],
+    [ "transform-class-properties" ],
+    [ "transform-runtime" ],
+    [ "styled-components" ],
+    [
+      "module-resolver",
+      {
+        "root": [ "./src" ],
+        "alias": {}
+      }
+    ]
+  ]
+}
