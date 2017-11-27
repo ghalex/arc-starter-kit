@@ -13,7 +13,7 @@ const PageTemplate = ({ header, children, footer, ...props }) => {
       <Header>{header}</Header>
       <Content>{children}</Content>
       <Footer>
-        <div className='version'>© 2017<br /> <a href='#'>v{version}-beta</a></div>
+        <div className='version'>© 2017 Starter Kit<br /> <a href='#'>v{version}</a></div>
         {footer}
       </Footer>
     </Wrapper>

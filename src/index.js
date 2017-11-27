@@ -12,7 +12,7 @@ import rootStore from 'stores'
 
 document.startApp = function (container) {
   ReactDOM.render(
-    <MobxProvider {...rootStore}>
+    <MobxProvider store={rootStore}>
       <ThemeProvider theme={theme}>
         <Routes />
       </ThemeProvider>

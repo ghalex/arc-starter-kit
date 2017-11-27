@@ -24,6 +24,7 @@ export const Content = styled.section`
   padding: 1rem;
   max-width: 1150px;
   margin: 70px auto 90px auto;
+  font-family: ${p => p.theme.fonts.primary};
 `
 
 export const Footer = styled.footer`
