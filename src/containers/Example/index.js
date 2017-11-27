@@ -1,14 +1,16 @@
 import React from 'react'
 import { compose } from 'recompose'
 import { inject, observer } from 'mobx-react'
+import { Example } from 'components'
 
 const ExampleContainer = observer(
-  (props) => <div {...props}>example</div>
+  (props) => <Example {...props} />
 )
 
 const withStoreProps = inject(
   ({ store }, ownProps) => {
     return {
+      version: store.version
     }
   }
 )
