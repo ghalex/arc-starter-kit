@@ -13,8 +13,8 @@ const withStoreProps = inject(
     return {
       version: store.version,
       onReady: () => {
-        console.log('readyyyy')
-        store.login()
+        console.log('main page')
+        // store.login()
       }
     }
   }

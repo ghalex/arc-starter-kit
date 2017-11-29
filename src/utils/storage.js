@@ -4,10 +4,6 @@ export const settings = {
   storage: window.localStorage
 }
 
-export const getKey = () => {
-  return settings.key
-}
-
 export const getJWT = () => {
   return settings.storage.getItem(`${settings.key}-jwt`)
 }
@@ -25,7 +21,6 @@ export const clear = () => {
 
 export default {
   settings,
-  getKey,
   getJWT,
   getUser
 }

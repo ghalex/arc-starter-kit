@@ -4,13 +4,13 @@ import * as s from './styles'
 
 const Component = ({ isWhite, ...props }) => {
   let className = cx('logo', props.className)
-  let awsBucket = 'https://s3.eu-central-1.amazonaws.com/dreaminternship'
+  let awsBucket = 'https://s3-eu-west-1.amazonaws.com/coderbox'
 
   return (
     <a href={props.href}>
       <s.Logo
         {...props}
-        src={`${awsBucket}/logos/dreaminternship150${isWhite ? '-white' : ''}.png`}
+        src={`${awsBucket}/logos/coderbox${isWhite ? '-white' : '-blue'}.png`}
         className={className}
       />
     </a>
