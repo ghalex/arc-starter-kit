@@ -4,7 +4,7 @@
   "description": "ARc StarterKit",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "start": "webpack-dev-server",
     "standard": "standard",
     "build": "webpack --config webpack.config.prod.js",
     "webpack": "webpack",
@@ -29,6 +29,7 @@
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-router-dom": "^4.2.2",
+    "semantic-ui-react": "^0.77.1",
     "styled-components": "^2.2.3",
     "yup": "^0.23.0"
   },
@@ -44,12 +45,16 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.8",
+    "file-loader": "^1.1.6",
     "happypack": "^4.0.0",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
     "json-loader": "^0.5.7",
     "standard": "^10.0.3",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4"
+    "webpack-dev-server": "2.9.4"
   }
 }

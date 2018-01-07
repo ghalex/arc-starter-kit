@@ -3,8 +3,4 @@ coverage/**/*
 build/**/*
 *hot-update*
 *npm-debug*
-<<<<<<< HEAD
-*DS_Store*
-=======
 .DS_Store
->>>>>>> 4bb965bc22604367b909e7a21ca1072d9d4c627a

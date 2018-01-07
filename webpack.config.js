@@ -52,7 +52,7 @@ module.exports = {
     path: paths.appBuild,
     filename: 'bundle.js',
     publicPath: '/',
-    pathinfo: true
+    pathinfo: false
   },
   module: {
     rules: [
@@ -65,6 +65,10 @@ module.exports = {
         test: /\.(json)$/,
         exclude: /node_modules/,
         use: ['json-loader']
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -80,7 +84,6 @@ module.exports = {
   },
   plugins: plugins,
   devServer: {
-    contentBase: '/',
     hot: true,
     inline: true,
     port: 3000,
@@ -92,7 +95,7 @@ module.exports = {
       chunks: false,
       hash: false,
       modules: false,
-      publicPath: false,
+      publicPath: true,
       timings: true,
       version: false,
       warnings: true
