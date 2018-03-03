@@ -12,7 +12,7 @@ const withStoreProps = inject(
     return {
       version: store.version,
       onReady: () => {
-        console.log('container mounted')
+        store.sayHello('Starter Kit!')
       }
     }
   }
