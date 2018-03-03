@@ -10,11 +10,9 @@ export const Wrapper = styled.div`
 `
 
 export const Header = styled.header`
-
 `
 
 export const Content = styled.section`
-  font-family: ${p => p.theme.fonts.primary};
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -28,7 +26,6 @@ export const Footer = styled.footer`
   text-align: center;
 
   & .version {
-    font-family: ${p => p.theme.fonts.primary};
     margin: 1rem;
   }
 `

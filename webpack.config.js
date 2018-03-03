@@ -1,13 +1,8 @@
-'use strict'
-
-process.env.BABEL_ENV = 'development'
-process.env.NODE_ENV = 'development'
-
 const webpack = require('webpack')
 const path = require('path')
+const env = require('yargs').argv.env
 
 // Plugins
-const HappyPack = require('happypack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const paths = {
@@ -18,7 +13,9 @@ const paths = {
   appIndex: path.resolve(__dirname, 'src/index.js')
 }
 
-const plugins = [
+let plugins = [
+  new webpack.NamedModulesPlugin(),
+  new webpack.DefinePlugin({ 'process.env': { ENV: env, NODE_ENV: env } }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     filename: 'bundle.vendors.js',
@@ -26,28 +23,29 @@ const plugins = [
       const context = module.context
       return context && context.indexOf('node_modules') >= 0
     }
-  }),
-  new webpack.DefinePlugin({
-    'process.env': {
-      ENV: JSON.stringify(process.env.NODE_ENV),
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-    }
-  }),
-  new webpack.NamedModulesPlugin(),
-  new webpack.HotModuleReplacementPlugin(),
-  new HappyPack({
-    loaders: [ 'babel-loader' ],
-    threads: 4
-  }),
-  new HtmlWebpackPlugin({template: paths.appHtml, inject: true})
+  })
 ]
+
+if (env !== 'production') {
+  plugins = [
+    ...plugins,
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({template: paths.appHtml, inject: true})
+  ]
+}
+
+if (env === 'production') {
+  plugins = [
+    ...plugins,
+    new webpack.optimize.UglifyJsPlugin({minimize: true, output: { comments: false }})
+  ]
+}
 
 module.exports = {
   entry: [
-    'babel-polyfill',
     paths.appIndex
   ],
-  devtool: 'source-map',
+  devtool: env === 'development' ? 'source-map' : false,
   output: {
     path: paths.appBuild,
     filename: 'bundle.js',
@@ -59,7 +57,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['happypack/loader']
+        use: ['babel-loader']
       },
       {
         test: /\.(json)$/,
@@ -75,7 +73,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
     modules: [
-      path.resolve(__dirname, 'node_modules'),
+      paths.appModules,
       paths.appSrc
     ],
     alias: {
@@ -88,17 +86,6 @@ module.exports = {
     inline: true,
     port: 3000,
     historyApiFallback: true,
-    host: 'localhost',
-    stats: {
-      assets: true,
-      children: false,
-      chunks: false,
-      hash: false,
-      modules: false,
-      publicPath: true,
-      timings: true,
-      version: false,
-      warnings: true
-    }
+    host: 'localhost'
   }
 }

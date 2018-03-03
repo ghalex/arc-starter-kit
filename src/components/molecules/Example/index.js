@@ -1,24 +1,26 @@
 import React from 'react'
 import cx from 'classnames'
-import * as s from './styles'
-import { Button, Input, Icon } from 'semantic-ui-react'
+import { Logo } from 'components'
+import { StyledExample } from './styles'
 
-const Component = ({ version, ...props }) => {
-  let className = cx('example', props.className)
+class Example extends React.Component {
+  static displayName = 'Example'
+  static defaultProps = {
+  }
 
-  return (
-    <s.Container {...props} className={className}>
-      <Button>Hello</Button>
-      <Input icon placeholder='Search...'>
-        <input />
-        <Icon name='search' />
-      </Input>
-    </s.Container>
-  )
+  static propTypes = {
+  }
+
+  render () {
+    let className = cx('example', this.props.className)
+    let { hide, ...props } = this.props
+
+    return (
+      <StyledExample hide={hide} {...props} className={className}>
+        <Logo />
+      </StyledExample>
+    )
+  }
 }
 
-Component.displayName = 'Example'
-Component.defaultProps = {
-}
-
-export default Component
+export default Example

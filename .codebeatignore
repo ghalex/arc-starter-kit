@@ -1,6 +1,1 @@
-src/components/index.js
-src/containers/index.js
-src/pages/index.js
-src/templates/api.js
-webpack.config.dev.js
-webpack.config.prod.js
+webpack.config.js

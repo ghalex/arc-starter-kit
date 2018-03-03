@@ -2,7 +2,7 @@ import React from 'react'
 import { MainTemplate } from 'templates'
 import { Example } from 'containers'
 
-const LoginPage = ({ location }) => {
+const MainPage = ({ location }) => {
   return (
     <MainTemplate>
       <Example />
@@ -10,4 +10,4 @@ const LoginPage = ({ location }) => {
   )
 }
 
-export default LoginPage
+export default MainPage
