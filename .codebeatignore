@@ -1,1 +1,6 @@
 webpack.config.js
+src/pages/index.js
+src/components/index.js
+src/templates/index.js
+src/containers/index.js
+
