@@ -19,6 +19,7 @@ export const Content = styled.section`
   flex-direction: column;
   align-items: center;
   max-width: 1150px;
+  padding: 1rem;
 `
 
 export const Footer = styled.footer`

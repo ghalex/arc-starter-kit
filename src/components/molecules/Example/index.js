@@ -18,6 +18,7 @@ class Example extends React.Component {
     return (
       <StyledExample hide={hide} {...props} className={className}>
         <Logo />
+        This is a logo example.
       </StyledExample>
     )
   }
