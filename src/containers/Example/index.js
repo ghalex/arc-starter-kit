@@ -1,8 +1,7 @@
 import React from 'react'
-import { compose } from 'recompose'
+import { compose, lifecycle } from 'recompose'
 import { inject, observer } from 'mobx-react'
 import { Example } from 'components'
-import { didMount } from '@coderbox/hocs'
 
 const ExampleContainer = observer(
   (props) => <Example {...props} />
@@ -13,15 +12,16 @@ const withStoreProps = inject(
     return {
       version: store.version,
       onReady: () => {
-        console.log('main page')
-        // store.login()
+        console.log('container mounted')
       }
     }
   }
 )
 
-const withOnReady = didMount((props) => {
-  props.onReady()
+const withOnReady = lifecycle({
+  componentDidMount () {
+    this.props.onReady()
+  }
 })
 
 export default compose(
