@@ -1,9 +1,6 @@
-const webpack = require('webpack')
 const path = require('path')
-const env = require('yargs').argv.env
-
-// Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const paths = {
   appBuild: path.resolve(__dirname, 'build'),
@@ -13,42 +10,14 @@ const paths = {
   appIndex: path.resolve(__dirname, 'src/index.js')
 }
 
-let plugins = [
-  new webpack.NamedModulesPlugin(),
-  new webpack.DefinePlugin({ 'process.env': { ENV: env, NODE_ENV: env } }),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    filename: 'bundle.vendors.js',
-    minChunks (module) {
-      const context = module.context
-      return context && context.indexOf('node_modules') >= 0
-    }
-  })
-]
-
-if (env !== 'production') {
-  plugins = [
-    ...plugins,
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({template: paths.appHtml, inject: true})
-  ]
-}
-
-if (env === 'production') {
-  plugins = [
-    ...plugins,
-    new webpack.optimize.UglifyJsPlugin({minimize: true, output: { comments: false }})
-  ]
-}
-
 module.exports = {
-  entry: [
-    paths.appIndex
-  ],
-  devtool: env === 'development' ? 'source-map' : false,
+  entry: {
+    bundle: paths.appIndex
+  },
   output: {
     path: paths.appBuild,
     filename: 'bundle.js',
+    chunkFilename: 'bundle.[name].js',
     publicPath: '/',
     pathinfo: false
   },
@@ -60,30 +29,33 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.(json)$/,
-        exclude: /node_modules/,
-        use: ['json-loader']
-      },
-      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       }
     ]
   },
-  resolve: {
-    extensions: ['.js', '.json', '.jsx'],
-    modules: [
-      paths.appModules,
-      paths.appSrc
-    ],
-    alias: {
-      moment$: 'moment/moment.js'
+  plugins: [
+    new CleanWebpackPlugin(paths.appBuild, {}),
+    new HtmlWebpackPlugin({
+      inject: true,
+      hash: true,
+      template: paths.appHtml,
+      filename: 'index.html'
+    })
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          enforce: true,
+          chunks: 'all'
+        }
+      }
     }
   },
-  plugins: plugins,
   devServer: {
-    hot: true,
-    inline: true,
     port: 3000,
     historyApiFallback: true,
     host: 'localhost'
