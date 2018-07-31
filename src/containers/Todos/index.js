@@ -1,16 +1,17 @@
 import React from 'react'
 import { compose, lifecycle } from 'recompose'
 import { inject, observer } from 'mobx-react'
-import { Example } from 'components'
+import { Todos } from 'components'
 
 const ExampleContainer = observer(
-  (props) => <Example {...props} />
+  (props) => <Todos {...props} />
 )
 
 const withStoreProps = inject(
   ({ store }, ownProps) => {
     return {
       version: store.version,
+      todos: store.todos.json,
       onReady: () => {
         store.sayHello('Starter Kit!')
       }

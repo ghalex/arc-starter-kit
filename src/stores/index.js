@@ -1,21 +1,23 @@
-import { types } from 'mobx-state-tree'
+import { action, computed } from 'mobx'
 import { version } from '/../package.json'
+import TodosStore from './TodosStore'
+import AuthStore from './AuthStore'
 
-const RootStore = types.model('RootStore', {
-}).views(
-  self => ({
-    get version () {
-      return version
-    }
-  })
-).actions(
-  self => {
-    return {
-      sayHello: (name) => {
-        console.log(`Hello: ${name}`)
-      }
-    }
+class RootStore {
+  constructor () {
+    this.auth = new AuthStore(this)
+    this.todos = new TodosStore(this)
   }
-)
 
-export default RootStore.create({})
+  @computed
+  get version () {
+    return version
+  }
+
+  @action
+  sayHello (name) {
+    console.log(`Hello: ${name}`)
+  }
+}
+
+export default new RootStore()

@@ -1,11 +1,11 @@
 import React from 'react'
 import { MainTemplate } from 'templates'
-import { Example } from 'containers'
+import { Todos } from 'containers'
 
 const MainPage = ({ location }) => {
   return (
     <MainTemplate>
-      <Example />
+      <Todos />
     </MainTemplate>
   )
 }
