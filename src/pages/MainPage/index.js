@@ -1,11 +1,13 @@
 import React from 'react'
 import { MainTemplate } from 'templates'
-import { Todos } from 'containers'
+import { Welcome } from 'components'
 
 const MainPage = ({ location }) => {
   return (
     <MainTemplate>
-      <Todos />
+      <Welcome title='Welcome to Company' subtitle='Log In'>
+        asdf
+      </Welcome>
     </MainTemplate>
   )
 }
