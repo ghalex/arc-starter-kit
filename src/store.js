@@ -1,8 +1,8 @@
 import { init } from '@rematch/core'
 import * as models from './models'
+import createRouterPlugin from './storeRouterPlugin'
 
-const store = init({
-  models
+export default init({
+  models,
+  plugins: [createRouterPlugin()]
 })
-
-export default store
