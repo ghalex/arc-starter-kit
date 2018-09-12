@@ -4,27 +4,29 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
-`
 
-export const Header = styled.header`
+  & > .icon.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+
+    &:hover { opacity: 0.8; }
+  }
 `
 
 export const Content = styled.section`
   width: 100%;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1150px;
-  padding: 1rem;
+  justify-content: center;
+  flex: 1;
 `
 
 export const Footer = styled.footer`
-  margin-top: auto;
   text-align: center;
-
-  & .version {
-    margin: 1rem;
-  }
+  margin-bottom: 10px;
 `

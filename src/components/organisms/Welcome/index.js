@@ -59,10 +59,17 @@ class WelcomeLayout extends React.Component {
     let { logo, children, title, subtitle, info, error, ...props } = this.props
 
     return (
-      <Flex flexDirection='column' color='black' mb={2} {...props} className={className}>
+      <Flex
+        flexDirection='column'
+        mx={[2, 2, 0]}
+        mb={2}
+        width={['auto', 'auto', 750]}
+        {...props}
+        className={className}>
+
         {this.renderError()}
         <Box
-          p={2}
+          p={0}
           bg='#f8f8f8'
           flexDirection={['column', 'column', 'row']}
           className='box-container'
