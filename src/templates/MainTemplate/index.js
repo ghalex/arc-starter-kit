@@ -1,5 +1,4 @@
 import React from 'react'
-import { version } from '/../package.json'
 import {
   Wrapper,
   Header,
@@ -12,10 +11,7 @@ const PageTemplate = ({ header, children, footer, ...props }) => {
     <Wrapper {...props}>
       <Header>{header}</Header>
       <Content>{children}</Content>
-      <Footer>
-        <div className='version'>© 2018 Starter Kit<br /> <a href='#'>v{version}</a></div>
-        {footer}
-      </Footer>
+      <Footer>{footer}</Footer>
     </Wrapper>
   )
 }

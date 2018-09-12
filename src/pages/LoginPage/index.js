@@ -2,10 +2,9 @@ import React from 'react'
 import { SimpleTemplate } from 'templates'
 import { Welcome, Logo, FormLogin } from 'components'
 import { compose } from 'recompose'
+import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { inject, observer } from 'mobx-react'
 
-@observer
 class LoginPage extends React.Component {
   render () {
     const { error, onLogin, onAnonymous, onLoginWithGoogle, onLoginWithFacebook } = this.props
@@ -37,34 +36,47 @@ class LoginPage extends React.Component {
   }
 }
 
-const withStoreProps = inject(({ store }, ownProps) => {
-  const { auth } = store
-  const { history } = ownProps
-
-  return {
-    error: auth.error,
-    newUser: auth.newUser,
-    onLogin: ({ email, password }) => {
-      return auth
-        .login(email, password)
-        .then(result => {
-          if (result && result.user) {
-            history.replace('/main')
-          }
-        })
-    },
-    onLoginWithFacebook: () => true,
-    onLoginWithGoogle: () => {
-      return auth
-        .loginWithGoogle()
-        .then(result => {
-          history.replace('/main')
-        })
+const withStoreProps = connect(
+  state => {
+    return {
+      error: state.app.error
+    }
+  },
+  dispatch => {
+    return {
+      onLogin: data => {
+        return dispatch.app.login(data)
+      }
     }
   }
-})
+)
+// const withStoreProps = inject(({ store }, ownProps) => {
+//   const { auth } = store
+//   const { history } = ownProps
+
+//   return {
+//     error: auth.error,
+//     newUser: auth.newUser,
+//     onLogin: ({ email, password }) => {
+//       return auth
+//         .login(email, password)
+//         .then(result => {
+//           if (result && result.user) {
+//             history.replace('/main')
+//           }
+//         })
+//     },
+//     onLoginWithFacebook: () => true,
+//     onLoginWithGoogle: () => {
+//       return auth
+//         .loginWithGoogle()
+//         .then(result => {
+//           history.replace('/main')
+//         })
+//     }
+//   }
+// })
 
 export default compose(
-  withRouter,
   withStoreProps
 )(LoginPage)

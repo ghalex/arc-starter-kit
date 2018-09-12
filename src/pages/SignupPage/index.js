@@ -3,10 +3,10 @@ import { SimpleTemplate } from 'templates'
 import { Welcome, Logo, FormSignup } from 'components'
 import { compose } from 'recompose'
 import { Link, withRouter } from 'react-router-dom'
-import { inject, observer } from 'mobx-react'
 
-const SignupPage = observer(
-  ({ error, onSignup }) => {
+class SignupPage extends React.Component {
+  render () {
+    const { error, onSignup } = this.props
     return (
       <SimpleTemplate>
         <Welcome
@@ -29,31 +29,28 @@ const SignupPage = observer(
       </SimpleTemplate>
     )
   }
-)
+}
 
-const withStoreProps = inject(({ store }, ownProps) => {
-  const { auth } = store
-  const { history } = ownProps
+// const withStoreProps = inject(({ store }, ownProps) => {
+//   const { auth } = store
+//   const { history } = ownProps
 
-  return {
-    error: auth.error,
-    onSignup: ({ name, email, password }) => {
-      return auth
-        .signup(name, email, password)
-        .then(result => {
-          console.log('result', result)
-          if (result) {
-            history.replace('/main')
-          }
-        })
-    },
-    onClose: () => {
-      history.replace('/main')
-    }
-  }
-})
+//   return {
+//     error: auth.error,
+//     onSignup: ({ name, email, password }) => {
+//       return auth
+//         .signup(name, email, password)
+//         .then(result => {
+//           console.log('result', result)
+//           if (result) {
+//             history.replace('/main')
+//           }
+//         })
+//     },
+//     onClose: () => {
+//       history.replace('/main')
+//     }
+//   }
+// })
 
-export default compose(
-  withRouter,
-  withStoreProps
-)(SignupPage)
+export default SignupPage

@@ -1,14 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { Provider } from 'react-redux'
 import theme from './theme'
 import Routes from './routes'
-
-// mobx
-import { Provider as MobxProvider } from 'mobx-react'
-
-// stores
-import rootStore from 'stores'
+import store from './store'
 
 document.startApp = function (container) {
   const GlobalStyles = createGlobalStyle`
@@ -22,14 +18,14 @@ document.startApp = function (container) {
   `
 
   ReactDOM.render(
-    <MobxProvider store={rootStore}>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <div>
           <Routes />
           <GlobalStyles />
         </div>
       </ThemeProvider>
-    </MobxProvider>,
+    </Provider>,
     container
   )
 }
