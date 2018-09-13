@@ -31,7 +31,7 @@
     "recompose": "^0.30.0",
     "styled-components": "^4.0.0-beta.3-side-effect-test",
     "yup": "^0.26.5",
-    "zebbra": "^1.0.56"
+    "zebbra": "^1.0.57"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.6",

@@ -1,17 +1,20 @@
 import firebase from 'utils/firebase'
-import pk from '/../package.json'
+import info from '/../package.json'
 
 export default {
   state: {
     currentUser: null,
     error: null,
-    version: pk.version,
-    name: pk.productName
+    version: info.version,
+    name: info.productName,
+    ready: false
   },
   reducers: {
     switchUser: (state, payload) => {
       return {
         ...state,
+        error: null,
+        ready: true,
         currentUser: payload
       }
     },
@@ -31,8 +34,25 @@ export default {
           dispatch.app.serverError(e.message)
         })
     },
+    logout: async () => {
+      return firebase
+        .auth()
+        .signOut()
+        .catch(e => {
+          dispatch.app.serverError(e.message)
+        })
+    },
     signup: async ({ name, email, password }) => {
+      return firebase
+        .createUserWithEmailAndPassword(email, password)
+        .then(credential => {
+          if (name) {
+            credential.user.updateProfile({ displayName: name })
+            return credential
+          }
 
+          return credential
+        })
     }
   })
 }
