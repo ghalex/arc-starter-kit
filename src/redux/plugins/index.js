@@ -1,1 +1,1 @@
-export { default as createRouterPlugin } from './router'
+export { default as createRouterPlugin } from './Router'

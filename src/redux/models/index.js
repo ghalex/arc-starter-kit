@@ -1,2 +1,2 @@
-export { default as app } from './app'
-export { default as todos } from './todos'
+export { default as app } from './Application'
+export { default as todos } from './Todos'
