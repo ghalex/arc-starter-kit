@@ -22,9 +22,9 @@ const withStoreProps = connect(
   },
   (dispatch, { history }) => {
     return {
-      onLogin: data => dispatch.app.login(data).then(() => history.push('/')),
-      onLoginWithGoogle: data => true,
-      onLoginWithFacebook: data => true
+      onLogin: (data) => dispatch.app.login(data).then(() => history.push('/')),
+      onLoginWithGoogle: () => dispatch.app.loginWithGoogle().then(() => history.push('/')),
+      onLoginWithFacebook: () => dispatch.app.loginWithFacebook().then(() => history.push('/'))
     }
   }
 )

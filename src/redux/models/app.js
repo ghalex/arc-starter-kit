@@ -34,6 +34,14 @@ export default {
           dispatch.app.serverError(e.message)
         })
     },
+    loginWithGoogle: async () => {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      return firebase.auth().signInWithPopup(provider)
+    },
+    loginWithFacebook: async () => {
+      const provider = new firebase.auth.FacebookAuthProvider()
+      return firebase.auth().signInWithPopup(provider)
+    },
     logout: async () => {
       return firebase
         .auth()
