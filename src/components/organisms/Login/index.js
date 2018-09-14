@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Welcome, Logo, FormLogin } from 'components'
+import { Icon } from 'zebbra/components'
 import { Link } from 'react-router-dom'
 
 class Login extends React.Component {
@@ -31,10 +32,8 @@ class Login extends React.Component {
               <Link to='/reset'>reset your password here.</Link>
             </span>
           } >
-          <FormLogin
-            onSubmit={onLogin}
-            onGoogle={onLoginWithGoogle}
-            onFacebook={onLoginWithFacebook} />
+          <Icon name='user' color='primary' fontSize={5} inverted circular shadow />
+          <FormLogin onSubmit={onLogin} onGoogle={onLoginWithGoogle} onFacebook={onLoginWithFacebook} />
         </Welcome>
         <div>
           Don't have an account ? {' '}

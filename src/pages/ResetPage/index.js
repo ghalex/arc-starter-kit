@@ -1,14 +1,14 @@
 import React from 'react'
 import { SimpleTemplate } from 'templates'
-import { Signup } from 'components'
+import { Reset } from 'components'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 
-class SignupPage extends React.Component {
+class ResetPage extends React.Component {
   render () {
     return (
       <SimpleTemplate>
-        <Signup {...this.props} />
+        <Reset {...this.props} />
       </SimpleTemplate>
     )
   }
@@ -22,11 +22,11 @@ const withStoreProps = connect(
   },
   (dispatch, { history }) => {
     return {
-      onSignup: data => dispatch.app.signup(data)
+      onReset: data => dispatch.app.reset(data)
     }
   }
 )
 
 export default compose(
   withStoreProps
-)(SignupPage)
+)(ResetPage)

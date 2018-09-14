@@ -9,15 +9,15 @@ import { Form } from './styles'
 /**
  * Signup form used to create a user.
  *
- * @name LoginLayout
+ * @name FormSignup
  * @param {func} onSubmit
  * @render react
  *
  * @example
  *  <SignupForm onSubmit={data => console.log(data)} />
  */
-class SignupForm extends React.Component {
-  static displayName = 'SignupForm'
+class FormSignup extends React.Component {
+  static displayName = 'FormSignup'
   static defaultProps = {}
   static propTypes = {
     onSubmit: PropTypes.func
@@ -117,4 +117,4 @@ export default withFormik({
         })
     }
   }
-})(SignupForm)
+})(FormSignup)

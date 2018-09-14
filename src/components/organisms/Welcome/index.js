@@ -74,7 +74,7 @@ class WelcomeLayout extends React.Component {
           flexDirection={['column', 'column', 'row']}
           className='box-container'
         >
-          <Flex flex={1} flexDirection='column' p='2em' bg='white'>
+          <Flex flex={1} justifyContent='space-between' flexDirection='column' p='2em' bg='white'>
             <div>
               {logo}
               {title && <Title fontSize={36} mb={-3} thin>{title}</Title>}
@@ -82,7 +82,7 @@ class WelcomeLayout extends React.Component {
             </div>
             <p>{info}</p>
           </Flex>
-          <Flex flex={1} flexDirection='column' p='1em'>
+          <Flex flex={1} alignItems='center' justifyContent='center' flexDirection='column' p='2em'>
             {children}
           </Flex>
         </Box>

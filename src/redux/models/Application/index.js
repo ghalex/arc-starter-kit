@@ -61,6 +61,11 @@ export default {
 
           return credential
         })
+    },
+    reset: async ({ email }) => {
+      return firebase
+        .auth()
+        .sendPasswordResetEmail(email)
     }
   })
 }
