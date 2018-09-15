@@ -66,7 +66,7 @@ export default withFormik({
   validationSchema: yup.object().shape({
     email: yup.string().email('Invalid email address').required('Email is required')
   }),
-  mapPropsToValues: (p) => ({ email: p.email }),
+  mapPropsToValues: (p) => ({ email: '' }),
   handleSubmit: (values, { props, setSubmitting }) => {
     if (props.onSubmit) {
       props

@@ -1,14 +1,14 @@
 import React from 'react'
 import { SimpleTemplate } from 'templates'
-import { Reset } from 'components'
+import { ResetPassword } from 'components'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 
-class ResetPage extends React.Component {
+class ResetPasswordPage extends React.Component {
   render () {
     return (
       <SimpleTemplate>
-        <Reset {...this.props} />
+        <ResetPassword {...this.props} />
       </SimpleTemplate>
     )
   }
@@ -17,16 +17,17 @@ class ResetPage extends React.Component {
 const withStoreProps = connect(
   state => {
     return {
-      error: state.app.error
+      error: state.app.error,
+      complete: state.app.passwordReset
     }
   },
   (dispatch, { history }) => {
     return {
-      onReset: data => dispatch.app.reset(data)
+      onReset: data => dispatch.app.resetPassword(data)
     }
   }
 )
 
 export default compose(
   withStoreProps
-)(ResetPage)
+)(ResetPasswordPage)

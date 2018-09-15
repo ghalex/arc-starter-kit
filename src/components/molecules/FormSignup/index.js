@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
-import { string, object } from 'yup'
+import * as yup from 'yup'
 import { withFormik } from 'formik'
 import { Group, Button, Field, Input } from 'zebbra/components'
 import { Form } from './styles'
@@ -95,10 +95,10 @@ class FormSignup extends React.Component {
 
 export default withFormik({
   validateOnChange: false,
-  validationSchema: object().shape({
-    email: string().email().required('Email is required'),
-    name: string().min(4, 'Must be longer than 4 characters').required('Name is required'),
-    password: string().required('Password is required')
+  validationSchema: yup.object().shape({
+    email: yup.string().email().required('Email is required'),
+    name: yup.string().min(4, 'Must be longer than 4 characters').required('Name is required'),
+    password: yup.string().required('Password is required')
   }),
   mapPropsToValues: p => ({
     email: '',

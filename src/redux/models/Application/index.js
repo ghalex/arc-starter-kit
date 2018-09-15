@@ -7,7 +7,9 @@ export default {
     error: null,
     version: info.version,
     name: info.productName,
-    ready: false
+    ready: false,
+    passwordReset: false,
+    passwordChange: false
   },
   reducers: {
     switchUser: (state, payload) => {
@@ -18,12 +20,9 @@ export default {
         currentUser: payload
       }
     },
-    serverError: (state, payload) => {
-      return {
-        ...state,
-        error: payload
-      }
-    }
+    passwordChange: (state, payload) => ({ ...state, error: null, passwordChange: true }),
+    passwordReset: (state, payload) => ({ ...state, error: null, passwordReset: true }),
+    serverError: (state, payload) => ({ ...state, error: payload })
   },
   effects: (dispatch) => ({
     login: async ({ email, password }) => {
@@ -62,10 +61,23 @@ export default {
           return credential
         })
     },
-    reset: async ({ email }) => {
+    resetPassword: async ({ email }) => {
       return firebase
         .auth()
         .sendPasswordResetEmail(email)
+        .then(() => dispatch.app.passwordReset())
+        .catch(e => {
+          dispatch.app.serverError(e.message)
+        })
+    },
+    changePassword: async ({ password, code }) => {
+      return firebase
+        .auth()
+        .confirmPasswordReset(code, password)
+        .then(() => dispatch.app.passwordChange())
+        .catch(e => {
+          dispatch.app.serverError(e.message)
+        })
     }
   })
 }

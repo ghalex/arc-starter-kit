@@ -38,7 +38,6 @@ class FormLogin extends React.Component {
     const {
       values,
       errors,
-      showFacebook,
       isSubmitting,
       onGoogle,
       onFacebook,

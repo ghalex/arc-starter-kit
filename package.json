@@ -24,6 +24,7 @@
     "connected-react-router": "^4.4.1",
     "firebase": "^5.5.0",
     "formik": "^1.3.0",
+    "query-string": "^6.1.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-redux": "^5.0.7",

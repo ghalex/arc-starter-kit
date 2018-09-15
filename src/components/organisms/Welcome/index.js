@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Box, Title, Flex } from 'zebbra/components'
+import { Container } from './styles'
 
 /**
  * Layout used to render a Login, Signup or Reset form.
@@ -59,34 +60,37 @@ class WelcomeLayout extends React.Component {
     let { logo, children, title, subtitle, info, error, ...props } = this.props
 
     return (
-      <Flex
-        flexDirection='column'
-        mx={[2, 2, 0]}
-        mb={2}
-        width={['auto', 'auto', 750]}
-        {...props}
-        className={className}>
+      <Container>
+        <Flex
+          flexDirection='column'
+          mx={[2, 2, 0]}
+          mb={2}
+          minWidth={400}
+          width={['100%', '100%', 750]}
+          {...props}
+          className={className}>
 
-        {this.renderError()}
-        <Box
-          p={0}
-          bg='#f8f8f8'
-          flexDirection={['column', 'column', 'row']}
-          className='box-container'
-        >
-          <Flex flex={1} justifyContent='space-between' flexDirection='column' p='2em' bg='white'>
-            <div>
-              {logo}
-              {title && <Title fontSize={36} mb={-3} thin>{title}</Title>}
-              {subtitle && <Title fontSize={36} mb={5}>{subtitle}</Title>}
-            </div>
-            <p>{info}</p>
-          </Flex>
-          <Flex flex={1} alignItems='center' justifyContent='center' flexDirection='column' p='2em'>
-            {children}
-          </Flex>
-        </Box>
-      </Flex>
+          {this.renderError()}
+          <Box
+            p={0}
+            bg='#f8f8f8'
+            flexDirection={['column', 'column', 'row']}
+            className='box-container'
+          >
+            <Flex flex={1} justifyContent='space-between' flexDirection='column' p='2em' bg='white'>
+              <div>
+                {logo}
+                {title && <Title fontSize={36} mb={-3} thin>{title}</Title>}
+                {subtitle && <Title fontSize={36} mb={5}>{subtitle}</Title>}
+              </div>
+              <p>{info}</p>
+            </Flex>
+            <Flex flex={1} alignItems='center' justifyContent='center' flexDirection='column' p='2em'>
+              {children}
+            </Flex>
+          </Box>
+        </Flex>
+      </Container>
     )
   }
 }
