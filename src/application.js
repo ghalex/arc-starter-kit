@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import { FirebaseAutoLogin, GlobalStyles } from 'components'
+import { GlobalStyles } from 'components'
 import { ThemeProvider } from 'styled-components'
-import { MainPage, LoginPage, SignupPage, ResetPasswordPage, ChangePasswordPage } from 'pages'
+import { MainPage, LoginPage, SignupPage, ResetPasswordPage, ChangePasswordPage, LoadingPage } from 'pages'
 import { connect } from 'react-redux'
 import theme from './theme'
 
@@ -18,27 +18,35 @@ const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
 
 class Application extends React.Component {
   reanderLoading () {
-    return <div>App loading...</div>
+    return <LoadingPage />
   }
+
+  renderRoutes () {
+    let { currentUser } = this.props
+
+    return (
+      <Router>
+        <Switch>
+          <Route path='/login' component={LoginPage} />
+          <Route path='/signup' component={SignupPage} />
+          <Route path='/reset' component={ResetPasswordPage} />
+          <Route path='/change' component={ChangePasswordPage} />
+          <PrivateRoute path='/' component={MainPage} isAuthenticated={currentUser !== null} exact />
+        </Switch>
+      </Router>
+    )
+  }
+
   render () {
-    const { currentUser, ready, onNewUser } = this.props
+    const { ready } = this.props
 
     return (
       <ThemeProvider theme={theme}>
         <div>
-          <FirebaseAutoLogin onNewUser={onNewUser} />
           <GlobalStyles />
           {!ready
             ? this.reanderLoading()
-            : <Router>
-              <Switch>
-                <Route path='/login' component={LoginPage} />
-                <Route path='/signup' component={SignupPage} />
-                <Route path='/reset' component={ResetPasswordPage} />
-                <Route path='/change' component={ChangePasswordPage} />
-                <PrivateRoute path='/' component={MainPage} isAuthenticated={currentUser !== null} exact />
-              </Switch>
-            </Router>}
+            : this.renderRoutes()}
         </div>
       </ThemeProvider>
     )
@@ -50,11 +58,6 @@ const withStoreProps = connect(
     return {
       ready: state.app.ready,
       currentUser: state.app.currentUser
-    }
-  },
-  dispatch => {
-    return {
-      onNewUser: user => dispatch.app.switchUser(user)
     }
   }
 )
