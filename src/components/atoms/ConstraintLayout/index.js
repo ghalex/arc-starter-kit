@@ -1,8 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import AutoLayout from 'autolayout'
 
 class ConstraintLayout extends React.Component {
   state = { styles: {} }
+  static displayName = 'ConstraintLayout'
+  static defaultProps = {}
+
+  static propTypes = {
+    constraints: PropTypes.array,
+    children: PropTypes.any,
+    style: PropTypes.object
+  }
+
   constructor(props) {
     super(props)
     this.view = new AutoLayout.View()
@@ -70,8 +80,7 @@ class ConstraintLayout extends React.Component {
     let layoutStyle = {
       position: 'relative',
       margin: 0,
-      padding: 0,
-      backgroundColor: 'red'
+      padding: 0
     }
 
     let views = React.Children.map(this.props.children, child => {

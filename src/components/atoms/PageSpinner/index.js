@@ -8,7 +8,10 @@ const PageSpinner = ({ label, ...props }) => {
 
   return (
     <Container {...props} className={className}>
-      <Loader color='primary' className='loader' vertical>{label}...</Loader>
+      <Loader color="primary" className="loader" vertical>
+        {label}
+        ...
+      </Loader>
     </Container>
   )
 }
