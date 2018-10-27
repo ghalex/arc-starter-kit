@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import { GlobalStyles } from 'components'
 import { ThemeProvider } from 'styled-components'
-import { MainPage, LoginPage, SignupPage, ResetPasswordPage, ChangePasswordPage, LoadingPage } from 'pages'
+import { MainPage, LoginPage, SignupPage, ResetPasswordPage, ChangePasswordPage, LoadingPage, TestPage } from 'pages'
 import { connect } from 'react-redux'
 import theme from './theme'
 
@@ -31,6 +31,7 @@ class Application extends React.Component {
           <Route path='/signup' component={SignupPage} />
           <Route path='/reset' component={ResetPasswordPage} />
           <Route path='/change' component={ChangePasswordPage} />
+          <Route path='/test' component={TestPage} />
           <PrivateRoute path='/' component={MainPage} isAuthenticated={currentUser !== null} exact />
         </Switch>
       </Router>
