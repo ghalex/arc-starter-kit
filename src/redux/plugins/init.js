@@ -1,13 +1,12 @@
-
 export default () => {
   let callbacks = []
   return {
-    onModel (model) {
+    onModel(model) {
       if (model.init) {
         callbacks.push(model.init)
       }
     },
-    onStoreCreated (store) {
+    onStoreCreated(store) {
       callbacks.forEach(c => c(store.dispatch))
     }
   }

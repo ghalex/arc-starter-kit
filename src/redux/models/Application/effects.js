@@ -1,6 +1,7 @@
+/* eslint-env es6 */
 import firebase from 'utils/firebase'
 
-export default (dispatch) => {
+export default dispatch => {
   return {
     login: async ({ email, password }) => {
       return firebase

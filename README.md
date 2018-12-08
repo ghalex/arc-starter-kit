@@ -6,4 +6,4 @@
 
 ## 1. Description
 
-StarterKit for REACT + Mobx + ARc. The architecture is based on the [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) methodology.
+StarterKit for REACT + Rematch + ARc. The architecture is based on the [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) methodology.
