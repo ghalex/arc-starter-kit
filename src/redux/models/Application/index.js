@@ -20,12 +20,20 @@ export default {
         currentUser: payload
       }
     },
-    passwordChange: (state, payload) => ({ ...state, error: null, passwordChange: true }),
-    passwordReset: (state, payload) => ({ ...state, error: null, passwordReset: true }),
+    passwordChange: (state, payload) => ({
+      ...state,
+      error: null,
+      passwordChange: true
+    }),
+    passwordReset: (state, payload) => ({
+      ...state,
+      error: null,
+      passwordReset: true
+    }),
     serverError: (state, payload) => ({ ...state, error: payload })
   },
-  effects: (dispatch) => ({
-    login: async ({ email, password }) => {
+  effects: dispatch => ({
+    login: async({ email, password }) => {
       return firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
@@ -33,15 +41,15 @@ export default {
           dispatch.app.serverError(e.message)
         })
     },
-    loginWithGoogle: async () => {
+    loginWithGoogle: async() => {
       const provider = new firebase.auth.GoogleAuthProvider()
       return firebase.auth().signInWithPopup(provider)
     },
-    loginWithFacebook: async () => {
+    loginWithFacebook: async() => {
       const provider = new firebase.auth.FacebookAuthProvider()
       return firebase.auth().signInWithPopup(provider)
     },
-    logout: async () => {
+    logout: async() => {
       return firebase
         .auth()
         .signOut()
@@ -49,7 +57,7 @@ export default {
           dispatch.app.serverError(e.message)
         })
     },
-    signup: async ({ name, email, password }) => {
+    signup: async({ name, email, password }) => {
       return firebase
         .createUserWithEmailAndPassword(email, password)
         .then(credential => {
@@ -61,7 +69,7 @@ export default {
           return credential
         })
     },
-    resetPassword: async ({ email }) => {
+    resetPassword: async({ email }) => {
       return firebase
         .auth()
         .sendPasswordResetEmail(email)
@@ -70,7 +78,7 @@ export default {
           dispatch.app.serverError(e.message)
         })
     },
-    changePassword: async ({ password, code }) => {
+    changePassword: async({ password, code }) => {
       return firebase
         .auth()
         .confirmPasswordReset(code, password)

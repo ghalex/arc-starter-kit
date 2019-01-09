@@ -6,15 +6,6 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-
-  & > .icon.close {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    cursor: pointer;
-
-    &:hover { opacity: 0.8; }
-  }
 `
 
 export const Content = styled.section`
@@ -27,6 +18,7 @@ export const Content = styled.section`
 `
 
 export const Footer = styled.footer`
+  width: 100%;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 10px;
 `

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import store from './redux'
 import Application from './application'
 
-document.startApp = function (container) {
+document.startApp = function(container) {
   ReactDOM.render(
     <Provider store={store}>
       <Application />

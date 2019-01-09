@@ -17,27 +17,46 @@ class Login extends React.Component {
     error: PropTypes.string
   }
 
-  render () {
-    const { error, onLogin, onLoginWithGoogle, onLoginWithFacebook } = this.props
+  render() {
+    const {
+      error,
+      onLogin,
+      onLoginWithGoogle,
+      onLoginWithFacebook
+    } = this.props
     return (
       <React.Fragment>
         <Welcome
           logo={<Logo />}
-          title='Welcome to'
-          subtitle='StarterKit'
+          title="Welcome to"
+          subtitle="StarterKit"
           error={error}
           info={
             <span>
-              Having trouble log in? You can {' '}
-              <Link to='/reset'>reset your password here.</Link>
+              Having trouble log in? You can{' '}
+              <Link to="/reset">reset your password here.</Link>
             </span>
-          } >
-          <Icon name='user' color='primary' fontSize={5} inverted circular shadow />
-          <FormLogin onSubmit={onLogin} onGoogle={onLoginWithGoogle} onFacebook={onLoginWithFacebook} />
+          }
+        >
+          <Icon
+            name="user"
+            color="primary"
+            fontSize={5}
+            inverted
+            circular
+            shadow
+          />
+          <FormLogin
+            onSubmit={onLogin}
+            onGoogle={onLoginWithGoogle}
+            onFacebook={onLoginWithFacebook}
+          />
         </Welcome>
         <div>
-          Don't have an account ? {' '}
-          <Link className='white' to='/signup'>Sign up now!</Link>
+          Don't have an account ?{' '}
+          <Link className="white" to="/signup">
+            Sign up now!
+          </Link>
         </div>
       </React.Fragment>
     )

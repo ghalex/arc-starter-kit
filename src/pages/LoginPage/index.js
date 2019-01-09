@@ -1,14 +1,34 @@
 import React from 'react'
 import { SimpleTemplate } from 'templates'
-import { Login } from 'components'
+import styled from 'styled-components'
+import { Paper, Typography, Grid } from '@material-ui/core'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
+
+const BoxPaper = styled(Paper)`
+  width: 100%;
+  height: 200px;
+`
 
 class LoginPage extends React.Component {
   render() {
     return (
       <SimpleTemplate>
-        <Login {...this.props} />
+        <Grid
+          container
+          style={{ border: '1px solid red', width: 600 }}
+          spacing={16}
+        >
+          <Grid item xs={12}>
+            <BoxPaper />
+          </Grid>
+          <Grid item xs={10}>
+            <BoxPaper />
+          </Grid>
+          <Grid item xs={2}>
+            <BoxPaper />
+          </Grid>
+        </Grid>
       </SimpleTemplate>
     )
   }

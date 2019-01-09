@@ -1,18 +1,21 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { version } from '/../package.json'
-import { Icon } from 'zebbra/components'
 import { Wrapper, Content, Footer } from './styles'
 
-const SimpleTemplate = ({ children, onClose, ...props }) => {
+const SimpleTemplate = ({ children, ...props }) => {
   return (
     <Wrapper {...props}>
-      {onClose && <Icon circular className='close' name='close' onClick={onClose} />}
       <Content>{children}</Content>
       <Footer>
-        © 2018 StarterKit, <a href='#'>v{version}</a>
+        © 2018 StarterKit, <a href="#">v{version}</a>
       </Footer>
     </Wrapper>
   )
+}
+
+SimpleTemplate.propTypes = {
+  children: PropTypes.node
 }
 
 export default SimpleTemplate
