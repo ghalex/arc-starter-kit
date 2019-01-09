@@ -5,7 +5,7 @@ import { compose } from 'recompose'
 import { connect } from 'react-redux'
 
 class LoginPage extends React.Component {
-  render () {
+  render() {
     return (
       <SimpleTemplate>
         <Login {...this.props} />
@@ -22,13 +22,13 @@ const withStoreProps = connect(
   },
   (dispatch, { history }) => {
     return {
-      onLogin: (data) => dispatch.app.login(data).then(() => history.push('/')),
-      onLoginWithGoogle: () => dispatch.app.loginWithGoogle().then(() => history.push('/')),
-      onLoginWithFacebook: () => dispatch.app.loginWithFacebook().then(() => history.push('/'))
+      onLogin: data => dispatch.app.login(data).then(() => history.push('/')),
+      onLoginWithGoogle: () =>
+        dispatch.app.loginWithGoogle().then(() => history.push('/')),
+      onLoginWithFacebook: () =>
+        dispatch.app.loginWithFacebook().then(() => history.push('/'))
     }
   }
 )
 
-export default compose(
-  withStoreProps
-)(LoginPage)
+export default compose(withStoreProps)(LoginPage)
