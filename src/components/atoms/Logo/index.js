@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { withStyles } from '@material-ui/styles'
 
-const styles = {
+const styles = theme => ({
   root: {},
   image: {
     maxWidth: 68
   }
-}
+})
 
 const Logo = ({ showLabel, classes, ...props }) => {
   let className = cx('logo-small', classes.root, props.className)
