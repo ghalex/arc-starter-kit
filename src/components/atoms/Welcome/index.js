@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Grid, Typography, Paper } from '@material-ui/core'
 import { withStyles } from '@material-ui/styles'
-import { LoginForm, Logo } from 'components'
+import { Logo } from 'components'
 
 const styles = theme => ({
   root: {
@@ -25,7 +25,7 @@ const styles = theme => ({
   }
 })
 
-const Page = ({ classes, ...props }) => {
+const Page = ({ title, subtitle, info, classes, ...props }) => {
   return (
     <Paper className={classes.root}>
       <Grid className={classes.grid} container>
@@ -33,17 +33,14 @@ const Page = ({ classes, ...props }) => {
           <div>
             <Logo />
             <Typography variant="h5" component="h6" className={classes.thin}>
-              Welcome to:
+              {title}
             </Typography>
-            <Typography variant="h5">Dreaminternship</Typography>
+            <Typography variant="h5">{subtitle}</Typography>
           </div>
-          <Typography>
-            Having trouble signing in? You can{' '}
-            <a href="#">reset your password here.</a>
-          </Typography>
+          <Typography>{info}</Typography>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <LoginForm />
+          {props.children}
         </Grid>
       </Grid>
     </Paper>
@@ -51,7 +48,11 @@ const Page = ({ classes, ...props }) => {
 }
 
 Page.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  children: PropTypes.node,
+  title: PropTypes.node,
+  subtitle: PropTypes.noe,
+  info: PropTypes.node
 }
 
 export default withStyles(styles)(Page)

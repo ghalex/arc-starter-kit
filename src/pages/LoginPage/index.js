@@ -1,11 +1,11 @@
 import React from 'react'
 import { SimpleTemplate } from 'templates'
-import { Welcome } from 'components'
+import { Login } from 'components'
 
 const LoginPage = props => {
   return (
     <SimpleTemplate>
-      <Welcome />
+      <Login />
     </SimpleTemplate>
   )
 }
