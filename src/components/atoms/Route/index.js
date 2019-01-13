@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Redirect } from '@reach/router'
 
 const Route = ({ component: Component, locked, ...props }) => {
-  return !locked ? <Component {...props} /> : <Redirect noThrow to="/" />
+  return !locked ? <Component {...props} /> : <Redirect to="/login" />
 }
 
 Route.propTypes = {

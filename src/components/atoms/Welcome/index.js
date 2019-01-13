@@ -51,7 +51,7 @@ Page.propTypes = {
   classes: PropTypes.object,
   children: PropTypes.node,
   title: PropTypes.node,
-  subtitle: PropTypes.noe,
+  subtitle: PropTypes.node,
   info: PropTypes.node
 }
 

@@ -1,2 +1,1 @@
-export { default as app } from './application'
-export { default as example } from './example'
+export { default as app } from './app'

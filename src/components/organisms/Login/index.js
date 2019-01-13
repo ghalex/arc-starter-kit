@@ -2,17 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
 import { Welcome, LoginForm } from 'components'
-import { withStyles } from '@material-ui/styles'
-
-const styles = theme => ({
-  root: {}
-})
 
 const Login = ({ onLogin, classes, ...props }) => {
-  let className = cx('login', classes.root, props.className)
+  let className = cx('login', props.className)
 
   return (
-    <div {...props} className={className}>
+    <div className={className}>
       <Welcome
         title="Welcome to"
         subtitle="Dreaminternship"
@@ -23,7 +18,7 @@ const Login = ({ onLogin, classes, ...props }) => {
           </span>
         }
       >
-        <LoginForm />
+        <LoginForm onLogin={onLogin} />
       </Welcome>
     </div>
   )
@@ -33,7 +28,7 @@ Login.propTypes = {
   className: PropTypes.string,
   classes: PropTypes.object,
   showLabel: PropTypes.bool,
-  onLogin: PropTypes.func.isRequired
+  onLogin: PropTypes.func
 }
 
-export default withStyles(styles)(Login)
+export default Login

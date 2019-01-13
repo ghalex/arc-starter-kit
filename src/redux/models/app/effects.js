@@ -1,44 +1,36 @@
 import firebase from 'utils/firebase'
-import info from '/../package.json'
 
-export default {
-  state: {
-    currentUser: null,
-    error: null,
-    version: info.version,
-    name: info.productName,
-    ready: false,
-    passwordReset: false,
-    passwordChange: false
-  },
-  reducers: {
-    switchUser: (state, payload) => {
-      return {
-        ...state,
-        error: null,
-        ready: true,
-        currentUser: payload
-      }
-    },
-    passwordChange: (state, payload) => ({
-      ...state,
-      error: null,
-      passwordChange: true
-    }),
-    passwordReset: (state, payload) => ({
-      ...state,
-      error: null,
-      passwordReset: true
-    }),
-    serverError: (state, payload) => ({ ...state, error: payload })
-  },
-  effects: dispatch => ({
+const time = 3000
+
+export default dispatch => {
+  return {
     login: async({ email, password }) => {
       return firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
+        .then(res => {
+          dispatch.app.addNotification({
+            key: new Date().getTime() + Math.random(),
+            message: 'You are successfully logged in!',
+            options: {
+              variant: 'success',
+              autoHideDuration: time
+            }
+          })
+          return res
+        })
         .catch(e => {
           dispatch.app.serverError(e.message)
+          dispatch.app.addNotification({
+            key: new Date().getTime() + Math.random(),
+            message: e.message,
+            options: {
+              variant: 'error',
+              autoHideDuration: time
+            }
+          })
+          console.log(e)
+          return Promise.reject(e.message)
         })
     },
     loginWithGoogle: async() => {
@@ -87,5 +79,5 @@ export default {
           dispatch.app.serverError(e.message)
         })
     }
-  })
+  }
 }

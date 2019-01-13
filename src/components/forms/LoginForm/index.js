@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   FormControlLabel,
   Checkbox,
@@ -7,23 +8,16 @@ import {
   TextField
 } from '@material-ui/core'
 import { useForm } from 'form-hooks'
-import { makeStyles } from '@material-ui/styles'
 
-const styles = makeStyles(theme => ({
-  root: {},
-  submit: {}
-}))
-
-const Form = props => {
-  const classes = styles(props)
+const LoginForm = ({ onLogin, classes, ...props }) => {
   const { values, handleChange, handleSubmit, isSubmitting } = useForm({
-    initialValues: { email: '', password: '' },
-    onSubmit: values => console.log(values),
+    initialValues: { email: 'ghalex@gmail.com', password: '' },
+    onSubmit: values => onLogin(values),
     validate: values => ({})
   })
 
   return (
-    <form className={classes.root} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <TextField
         margin="normal"
         label="Email:"
@@ -58,7 +52,6 @@ const Form = props => {
         variant="contained"
         color="primary"
         disabled={isSubmitting}
-        className={classes.submit}
       >
         {!isSubmitting && <span>Sign in</span>}
         {isSubmitting && <CircularProgress size={24} />}
@@ -67,4 +60,9 @@ const Form = props => {
   )
 }
 
-export default Form
+LoginForm.propTypes = {
+  classes: PropTypes.object,
+  onLogin: PropTypes.func
+}
+
+export default LoginForm
