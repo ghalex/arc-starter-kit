@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Grid, Typography, Paper } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
+import { withStyles } from '@material-ui/core/styles'
 import { Logo } from 'components'
 
 const styles = theme => ({

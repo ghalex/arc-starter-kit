@@ -1,8 +1,18 @@
 import React from 'react'
-import { SimpleTemplate } from 'templates'
+import { DashboardTemplate } from 'templates'
+import { connect } from 'react-redux'
 
 const MainPage = props => {
-  return <SimpleTemplate>main page</SimpleTemplate>
+  return <DashboardTemplate>main page</DashboardTemplate>
 }
 
-export default MainPage
+const withStoreProps = connect(
+  state => {
+    return {}
+  },
+  (dispatch, { navigate }) => {
+    return {}
+  }
+)
+
+export default withStoreProps(MainPage)

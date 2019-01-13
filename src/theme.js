@@ -36,4 +36,17 @@ theme.overrides.MuiSnackbarContent = {
   }
 }
 
+theme.overrides.MuiDrawer = {
+  paper: {}
+}
+
+theme.overrides.MuiListItemIcon = {
+  root: {
+    marginRight: 0,
+    '& svg': {
+      fontSize: 20
+    }
+  }
+}
+
 export default theme
