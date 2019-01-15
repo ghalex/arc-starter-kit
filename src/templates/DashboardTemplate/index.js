@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Navbar } from 'components'
+import { Navbar, Header, Content } from 'components'
 import { withStyles } from '@material-ui/core/styles'
 
 const drawerWidth = 256
@@ -17,10 +17,14 @@ const styles = theme => ({
       flexShrink: 0
     }
   },
-  content: {
+  body: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column'
+  },
+  content: {
+    flex: 1,
+    padding: '48px 36px 0'
   }
 })
 
@@ -28,9 +32,14 @@ const DashboardTemplate = ({ children, classes, ...props }) => {
   return (
     <div className={classes.root}>
       <nav className={classes.drawer}>
-        <Navbar />
+        <Navbar width={drawerWidth} />
       </nav>
-      <div className={classes.content}>content</div>
+      <div className={classes.body}>
+        <Header />
+        <main className={classes.content}>
+          <Content />
+        </main>
+      </div>
     </div>
   )
 }

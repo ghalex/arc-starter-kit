@@ -1,9 +1,17 @@
 import { createMuiTheme } from '@material-ui/core/styles'
-import purple from '@material-ui/core/colors/deepPurple'
+// import deepPurple from '@material-ui/core/colors/deepPurple'
+// import purple from '@material-ui/core/colors/purple'
+import red from '@material-ui/core/colors/red'
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple
+    primary: {
+      light: '#d1a8ff',
+      main: '#9f79cc',
+      dark: '#6f4c9b',
+      contrastText: '#fff'
+    },
+    secondary: red
   },
   typography: { useNextVariants: true }
 })
@@ -36,17 +44,30 @@ theme.overrides.MuiSnackbarContent = {
   }
 }
 
-theme.overrides.MuiDrawer = {
-  paper: {}
-}
+theme.overrides.MuiDrawer = {}
 
 theme.overrides.MuiListItemIcon = {
   root: {
-    marginRight: 0,
-    '& svg': {
-      fontSize: 20
-    }
+    color: 'inherit',
+    marginRight: 0
   }
 }
 
+theme.overrides.MuiListItemText = {
+  primary: {
+    color: 'inherit'
+  }
+}
+
+theme.overrides.MuiTabs = {
+  root: {
+    marginLeft: theme.spacing.unit
+  },
+  indicator: {
+    height: 3,
+    borderTopLeftRadius: 3,
+    borderTopRightRadius: 3,
+    backgroundColor: theme.palette.common.white
+  }
+}
 export default theme
